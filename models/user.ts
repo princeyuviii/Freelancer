@@ -1,6 +1,22 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+export interface IUser {
+  _id: string;
+  clerkId: string;
+  username?: string;
+  email?: string;
+  role?: string;
+  experience?: string;
+  hourlyRate?: number;
+  location?: string;
+  skills: string[];
+  githubUrl?: string;
+  linkedinUrl?: string;
+  escrowBalance: number;
+  createdAt: Date;
+}
+
+const UserSchema = new mongoose.Schema<IUser>({
   clerkId: { type: String, required: true, unique: true },
   username: { type: String },
   email: { type: String },
@@ -15,4 +31,4 @@ const UserSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-export const User = mongoose.models.User || mongoose.model("User", UserSchema);
+export const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

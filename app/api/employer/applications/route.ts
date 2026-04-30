@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { connectDB } from "@/lib/db";
 import { JobApplication } from "@/models/jobApplication";
-import { Job } from "@/models/job";
+import { Job, IJob } from "@/models/job";
 
 export async function GET() {
   try {
@@ -14,7 +14,7 @@ export async function GET() {
     await connectDB();
 
     // 1. Find all jobs created by this employer
-    const employerJobs = await Job.find({ employerId: userId });
+    const employerJobs = (await Job.find({ employerId: userId })) as IJob[];
     const jobIds = employerJobs.map((job) => job._id);
 
     // 2. Find all applications for these jobs

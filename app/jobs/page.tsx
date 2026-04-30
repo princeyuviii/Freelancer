@@ -195,7 +195,7 @@ export default function JobsPage() {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-10 w-10 animate-spin text-emerald-500" />
+          <Loader2 className="h-10 w-10 animate-spin text-cyan-500" />
           <span className={MONO_CLASS}>Scanning Job_Buffer...</span>
         </div>
       </div>
@@ -203,10 +203,10 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-slate-300 selection:bg-emerald-500/30 overflow-x-hidden font-sans">
+    <div className="min-h-screen bg-black text-slate-300 selection:bg-cyan-500/30 overflow-x-hidden font-sans">
       {/* Background Polish */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0" />
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_-20%,_rgba(16,185,129,0.1)_0%,_rgba(0,0,0,1)_100%)] z-0" />
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_-20%,_rgba(6,182,212,0.1)_0%,_rgba(0,0,0,1)_100%)] z-0" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Technical Header */}
@@ -217,11 +217,11 @@ export default function JobsPage() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-2"
             >
-              <div className="h-1 w-8 bg-emerald-500" />
-              <span className={cn(MONO_CLASS, "text-emerald-500")}>System / Job_Board_Active</span>
+              <div className="h-1 w-8 bg-cyan-500" />
+              <span className={cn(MONO_CLASS, "text-cyan-500")}>System / Job_Board_Active</span>
             </motion.div>
             <h1 className="text-6xl font-black tracking-tighter text-white">
-              DISCOVER <span className="text-emerald-500 italic">OPPS</span>
+              DISCOVER <span className="text-cyan-500 italic">OPPS</span>
             </h1>
             <p className="text-slate-500 max-w-xl text-sm leading-relaxed uppercase tracking-widest font-medium">
               High-fidelity freelance nodes for student developers. 
@@ -236,7 +236,7 @@ export default function JobsPage() {
                 placeholder="SEARCH_BY_TECH_OR_COMPANY..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-white/[0.02] border-white/10 w-full md:w-80 h-14 pl-12 rounded-2xl font-mono text-xs focus:border-emerald-500/50 transition-all placeholder:text-slate-800"
+                className="bg-white/[0.02] border-white/10 w-full md:w-80 h-14 pl-12 rounded-2xl font-mono text-xs focus:border-cyan-500/50 transition-all placeholder:text-slate-800"
               />
             </div>
           </div>
@@ -255,7 +255,7 @@ export default function JobsPage() {
                     className={cn(
                       "w-full text-left px-4 py-3 rounded-xl transition-all font-mono text-xs uppercase tracking-widest",
                       activeCategory === cat 
-                        ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" 
+                        ? "bg-cyan-500/10 text-cyan-500 border border-cyan-500/20" 
                         : "text-slate-600 hover:text-slate-400 hover:bg-white/5"
                     )}
                   >
@@ -275,7 +275,7 @@ export default function JobsPage() {
                     className={cn(
                       "w-full text-left px-4 py-3 rounded-xl transition-all font-mono text-xs uppercase tracking-widest",
                       activeLevel === lvl 
-                        ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20" 
+                        ? "bg-cyan-500/10 text-cyan-500 border border-cyan-500/20" 
                         : "text-slate-600 hover:text-slate-400 hover:bg-white/5"
                     )}
                   >
@@ -287,8 +287,8 @@ export default function JobsPage() {
 
             <Card className="bg-emerald-500/5 border-emerald-500/10 p-6 rounded-3xl">
               <div className="flex items-center gap-3 mb-4">
-                <ShieldCheck className="h-5 w-5 text-emerald-500" />
-                <span className={cn(MONO_CLASS, "text-emerald-500")}>Platform_Trust</span>
+                <ShieldCheck className="h-5 w-5 text-cyan-500" />
+                <span className={cn(MONO_CLASS, "text-cyan-500")}>Platform_Trust</span>
               </div>
               <p className="text-[11px] text-emerald-500/60 leading-relaxed uppercase tracking-tighter">
                 Every job listed on this buffer is vetted. All payments are secured via our Smart_Escrow nodes.
@@ -309,7 +309,7 @@ export default function JobsPage() {
                   <Button 
                     variant="ghost" 
                     onClick={() => { setSearchQuery(""); setActiveCategory("All"); setActiveLevel("All"); }}
-                    className="mt-4 text-emerald-500 font-mono text-[10px] uppercase tracking-widest"
+                    className="mt-4 text-cyan-500 font-mono text-[10px] uppercase tracking-widest"
                   >
                     Reset_Search_Parameters
                   </Button>
@@ -326,7 +326,7 @@ export default function JobsPage() {
                     <Card className="group bg-white/[0.01] border-white/5 hover:bg-white/[0.03] hover:border-white/10 transition-all duration-500 p-8 rounded-[2.5rem] relative overflow-hidden">
                       {/* Hover Accent */}
                       <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ArrowUpRight className="h-6 w-6 text-emerald-500/30" />
+                        <ArrowUpRight className="h-6 w-6 text-cyan-500/30" />
                       </div>
 
                       <div className="flex flex-col md:flex-row gap-8">
@@ -343,9 +343,9 @@ export default function JobsPage() {
                             <div className="flex items-center gap-2">
                               <span className="text-slate-400 font-bold">{job.company}</span>
                               <div className="h-1 w-1 rounded-full bg-slate-700" />
-                              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                                <ShieldCheck className="h-3 w-3 text-emerald-500" />
-                                <span className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Verified</span>
+                              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20">
+                                <ShieldCheck className="h-3 w-3 text-cyan-500" />
+                                <span className="text-[10px] text-cyan-500 font-bold uppercase tracking-widest">Verified</span>
                               </div>
                             </div>
                           </div>
@@ -383,8 +383,8 @@ export default function JobsPage() {
                               <span className="text-white font-bold">{job.level}</span>
                             </div>
                             <div className="pt-2 flex items-center justify-between border-t border-white/5">
-                              <span className={cn(MONO_CLASS, "text-emerald-500/50")}>AI Match</span>
-                              <span className="text-emerald-500 font-bold">{Math.floor(Math.random() * 20 + 80)}%</span>
+                              <span className={cn(MONO_CLASS, "text-cyan-500/50")}>AI Match</span>
+                              <span className="text-cyan-500 font-bold">{Math.floor(Math.random() * 20 + 80)}%</span>
                             </div>
                           </div>
 
@@ -395,18 +395,18 @@ export default function JobsPage() {
                               className={cn(
                                 "w-full h-14 rounded-2xl font-bold transition-all duration-300 shadow-2xl",
                                 appliedJobs.includes(job._id)
-                                  ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-500"
-                                  : "bg-white text-black hover:bg-slate-200"
-                              )}
-                            >
-                              {loadingId === job._id ? (
-                                <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                              ) : appliedJobs.includes(job._id) ? (
-                                <CheckCircle className="h-4 w-4 mr-2" />
-                              ) : (
-                                <Rocket className="h-4 w-4 mr-2" />
-                              )}
-                              {appliedJobs.includes(job._id) ? "Applied" : "Initialize Application"}
+                                   ? "bg-cyan-500/10 border border-cyan-500/20 text-cyan-500"
+                                   : "bg-white text-black hover:bg-slate-200"
+                               )}
+                             >
+                               {loadingId === job._id ? (
+                                 <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                               ) : appliedJobs.includes(job._id) ? (
+                                 <CheckCircle className="h-4 w-4 mr-2" />
+                               ) : (
+                                 <Rocket className="h-4 w-4 mr-2" />
+                               )}
+                               {appliedJobs.includes(job._id) ? "Applied" : "Initialize Application"}
                             </Button>
                             <Button
                               variant="outline"

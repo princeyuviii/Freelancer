@@ -6,6 +6,10 @@ import { Mentor } from "@/models/mentor";
 import { User } from "@/models/user";
 import { Job } from "@/models/job";
 
+import { IMentor } from "@/models/mentor";
+import { IUser } from "@/models/user";
+import { IJob } from "@/models/job";
+
 // GET /api/conversations - Get all conversations for the current user
 export async function GET() {
   try {
@@ -26,17 +30,17 @@ export async function GET() {
       const otherId = conv.participants.find((id: string) => id !== userId);
       
       // Try to find in Mentor collection first
-      let otherUser = await Mentor.findOne({ clerkId: otherId }).select('name image').lean();
+      let otherUser: any = await Mentor.findOne({ clerkId: otherId }).select('name image').lean();
       
       // If not a mentor, try User collection
       if (!otherUser) {
-        otherUser = await User.findOne({ clerkId: otherId }).select('username image').lean();
+        otherUser = await User.findOne({ clerkId: otherId }).select('username email image').lean();
       }
 
       // If still not found, check Job collection (for employers)
       let companyName = null;
       if (!otherUser) {
-        const job = await Job.findOne({ employerId: otherId }).select('company').lean();
+        const job = (await Job.findOne({ employerId: otherId }).select('company').lean()) as any;
         if (job) companyName = job.company;
       }
 

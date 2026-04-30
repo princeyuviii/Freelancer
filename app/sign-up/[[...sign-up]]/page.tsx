@@ -31,13 +31,6 @@ export default function Page() {
               identityPreviewEditButtonIcon: "text-violet-400",
             }
           }}
-          localization={{
-            signUp: {
-              start: {
-                title: "Create your FreeLancer Account",
-              },
-            },
-          }}
         />
       </div>
     </div>

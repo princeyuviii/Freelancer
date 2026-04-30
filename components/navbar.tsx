@@ -17,7 +17,7 @@ import {
   Zap
 } from "lucide-react";
 import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/nextjs";
-import { motion, AnimatePresence } from "framer-motion";
+import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const MONO = "font-mono tracking-tighter text-[10px] uppercase font-bold";
@@ -76,16 +76,17 @@ export default function Navbar() {
   ];
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className={cn(
-        "fixed w-full top-0 z-[100] transition-all duration-500",
-        scrolled
-          ? "py-3 bg-black/60 backdrop-blur-xl border-b border-white/5"
-          : "py-6 bg-transparent"
-      )}
-    >
+    <LazyMotion features={domAnimation}>
+      <m.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className={cn(
+          "fixed w-full top-0 z-[100] transition-all duration-500",
+          scrolled
+            ? "py-3 bg-black/60 backdrop-blur-xl border-b border-white/5"
+            : "py-6 bg-transparent"
+        )}
+      >
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* ── Logo ── */}
@@ -123,7 +124,7 @@ export default function Navbar() {
                     )}
                   >
                     {isActive && (
-                      <motion.div
+                      <m.div
                         layoutId="nav-glow"
                         className="absolute inset-0 bg-white/[0.03] border border-white/5 rounded-xl -z-10"
                       />
@@ -209,7 +210,7 @@ export default function Navbar() {
       {/* ── Mobile Menu ── */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -264,9 +265,10 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+      </m.nav>
+    </LazyMotion>
   );
 }

@@ -36,11 +36,19 @@ import {
   Download
 } from "lucide-react"
 import Link from "next/link"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { useRef, useEffect, useState } from "react"
-import Spline from '@splinetool/react-spline'
+import { useRef, useEffect, useState, Suspense } from "react"
+import dynamic from 'next/dynamic'
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
+import { LazyMotion, domAnimation, m, useScroll, useTransform, AnimatePresence } from "framer-motion"
+
+// Dynamic import for Spline to reduce initial bundle size
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black/20 animate-pulse flex items-center justify-center">
+    <div className="text-[10px] font-mono uppercase tracking-widest text-slate-800">Initializing_3D_Engine...</div>
+  </div>
+})
 import { cn } from "@/lib/utils"
 import {
   Accordion,
@@ -52,14 +60,14 @@ import {
 const MONO = "font-mono tracking-tighter text-[10px] uppercase";
 
 const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.8, delay }}
   >
     {children}
-  </motion.div>
+  </m.div>
 )
 
 export default function Home() {
@@ -67,7 +75,8 @@ export default function Home() {
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black text-slate-300 selection:bg-cyan-500/30 overflow-x-hidden font-sans">
+    <LazyMotion features={domAnimation}>
+      <div ref={containerRef} className="min-h-screen bg-black text-slate-300 selection:bg-cyan-500/30 overflow-x-hidden font-sans">
       {/* ── Fixed Accents ── */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] z-0" />
 
@@ -83,16 +92,16 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-20 text-center space-y-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md"
           >
             <div className="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse" />
             <span className={cn(MONO, "text-slate-400 font-bold")}>v2.0 Protocol_Active</span>
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -100,9 +109,9 @@ export default function Home() {
           >
             THE PLATFORM FOR<br />
             <span className="text-cyan-500 italic">STUDENT</span> BUILDERS.
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -110,9 +119,9 @@ export default function Home() {
           >
             Bridge the gap between academic theory and industry reality.
             High-fidelity projects, AI assistance, and professional escrow.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -137,17 +146,17 @@ export default function Home() {
                 Browse_Buffer
               </Link>
             </Button>
-          </motion.div>
+          </m.div>
         </div>
 
-        <motion.div
+        <m.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
         >
           <span className={cn(MONO, "text-[8px]")}>Scroll_Down</span>
           <ChevronDown className="w-4 h-4" />
-        </motion.div>
+        </m.div>
       </section>
 
       {/* ── Trust Nodes ── */}
@@ -521,6 +530,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </LazyMotion>
   )
 }

@@ -43,7 +43,7 @@ import { Card } from "@/components/ui/card"
 import { LazyMotion, domAnimation, m, useScroll, useTransform, AnimatePresence } from "framer-motion"
 
 // Dynamic import for Spline to reduce initial bundle size
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
+const Spline = dynamic(() => import('@/components/SplineScene'), {
   ssr: false,
   loading: () => <div className="w-full h-full bg-black/20 animate-pulse flex items-center justify-center">
     <div className="text-[10px] font-mono uppercase tracking-widest text-slate-800">Initializing_3D_Engine...</div>
